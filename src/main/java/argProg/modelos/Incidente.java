@@ -1,8 +1,8 @@
-package argProg.models;
+package argProg.modelos;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Date;
 
 @Entity
@@ -34,6 +34,6 @@ public class Incidente {
     //Un(uno) Incidente puede tener muchos TiposProblema --> @OneToMany
     @OneToMany
     @JoinColumn(name = "id_incidente",referencedColumnName = "id")
-    private ArrayList<TipoProblema> tiposdeproblema;
+    private List<TipoProblema> tiposdeproblema;
 
 }

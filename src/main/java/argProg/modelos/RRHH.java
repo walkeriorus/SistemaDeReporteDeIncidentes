@@ -1,5 +1,5 @@
-package argProg.models;
-import argProg.models.MesaDeAyuda;
+package argProg.modelos;
+
 public class RRHH {
     public void emitirReportes(MesaDeAyuda mesaAyuda) {
     }

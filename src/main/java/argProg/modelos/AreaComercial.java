@@ -1,4 +1,4 @@
-package argProg.models;
+package argProg.modelos;
 
 public class AreaComercial {
 

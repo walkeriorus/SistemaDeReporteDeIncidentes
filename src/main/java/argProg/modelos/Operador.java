@@ -1,4 +1,4 @@
-package argProg.models;
+package argProg.modelos;
 
 import jakarta.persistence.*;
 import lombok.Getter;

@@ -1,28 +1,29 @@
 package argProg.persistencia;
 
-import argProg.modelos.Tecnico;
+import argProg.modelos.Operador;
 import argProg.utilidades.EntityManagerUtil;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
-public class TecnicoDAO extends OperacionesDAOBasicas{
+public class OperadorDAO extends OperacionesDAOBasicas {
 
     @Override
-    public Tecnico buscar(int idTecnico){
+    public void eliminar(int idOperador) {
         EntityManager em = EntityManagerUtil.getEntityManager();
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
-        return em.find(Tecnico.class,idTecnico);
-    }
-    @Override
-    public void eliminar(int idTecnico){
-        EntityManager em = EntityManagerUtil.getEntityManager();
-        EntityTransaction transaction = em.getTransaction();
-        transaction.begin();
-        Tecnico cliente = em.getReference(Tecnico.class,idTecnico);
-        if(cliente != null){
-            em.remove(cliente);
+        Operador operador = em.getReference(Operador.class,idOperador);
+        if(operador != null){
+            em.remove(operador);
         }
         transaction.commit();
+    }
+
+    @Override
+    public Operador buscar(int idOperador) {
+        EntityManager em = EntityManagerUtil.getEntityManager();
+        EntityTransaction transaction = em.getTransaction();
+        transaction.begin();
+        return em.find(Operador.class,idOperador);
     }
 }
