@@ -10,13 +10,13 @@ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 
         <properties>
             <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3312/sistema_reporte_incidentes?characterEncoding=utf8"/>
-            <property name="hibernate.connection.username" value="root"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3312/sistemareportes?characterEncoding=utf8"/>
+            <property name="hibernate.connection.username" value="walterp"/>
             <property name="hibernate.connection.password" value="624531"/>
             <property name="hibernate.show_sql"   value="true" />
             <property name="hibernate.format_sql" value="true" />
             <property name="hibernate.highlight_sql" value="true"/>
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
         </properties>
     </persistence-unit>
 </persistence>
