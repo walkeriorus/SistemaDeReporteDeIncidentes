@@ -1,9 +1,18 @@
 package argProg.models;
 
-import java.util.Random;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.util.Random;
+@Getter @Setter
+@Entity
+@Table(name = "Operador")
 public class Operador {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY )
     private int id;
+    @Column(name = "nombre",length = 50 )
     private String nombre;
     public int AgregarHoras(boolean complejo) {
         int horas=0;
