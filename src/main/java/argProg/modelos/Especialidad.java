@@ -7,6 +7,7 @@ import lombok.Setter;
 
 @Getter @Setter @NoArgsConstructor
 @Entity
+@Table(name = "especialidad")
 public class Especialidad {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE )

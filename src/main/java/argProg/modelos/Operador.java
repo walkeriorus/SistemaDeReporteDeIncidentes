@@ -7,7 +7,7 @@ import lombok.Setter;
 import java.util.Random;
 @Getter @Setter
 @Entity
-@Table(name = "Operador")
+@Table(name = "operador")
 public class Operador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY )

@@ -8,7 +8,7 @@ import lombok.Setter;
 import java.util.List;
 @Getter @Setter @NoArgsConstructor
 @Entity
-@Table(name = "Tecnico")
+@Table(name = "tecnico")
 public class Tecnico {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

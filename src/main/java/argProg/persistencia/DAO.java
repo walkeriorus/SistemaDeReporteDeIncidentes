@@ -44,7 +44,7 @@ public class DAO<T> {
 
     public List<T> buscarTodos(){
         EntityManager em = EntityManagerUtil.getEntityManager();
-        String sql = "SELECT c FROM " + this.claseEntidad.getSimpleName() + " c";
+        String sql = String.format("SELECT c FROM %s c", this.claseEntidad.getSimpleName() );
         System.out.println(sql);
         Query buscarTodos = em.createQuery(sql);
         return buscarTodos.getResultList();

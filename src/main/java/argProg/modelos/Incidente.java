@@ -1,12 +1,17 @@
 package argProg.modelos;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 import java.util.Date;
 
+@NoArgsConstructor
+@Getter @Setter
 @Entity
-@Table(name = "Incidentes")
+@Table(name = "incidente")
 public class Incidente {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -26,9 +31,11 @@ public class Incidente {
     /*private Servicio servicio;*/
     @Column(name = "estado")
     private String estado;
-
+    @Column(name = "fecha_posible_resolucion")
     private Date fechaPosibleResolucion;
+    @Column(name = "fecha_finalizacion")
     private Date fechaFinalizacion;
+    @Column(name="complejo")
     private boolean complejo;
 
     //Un(uno) Incidente puede tener muchos TiposProblema --> @OneToMany
