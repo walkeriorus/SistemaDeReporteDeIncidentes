@@ -11,7 +11,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Getter @Setter
 @Entity
-@Table(name = "incidente")
+@Table(name = "incidentes")
 public class Incidente {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -22,11 +22,15 @@ public class Incidente {
 
     @ManyToOne//Muchos Incidentes se asocian a un(1) Tecnico
     @JoinColumn(name = "id_tecnico",referencedColumnName = "id")
-    private Tecnico tecnico;
+    public Tecnico tecnico;
 
-    @OneToOne//Un(uno) Incidente se asocia con un(uno) Cliente
+    /*@OneToOne//Un(uno) Incidente se asocia con un(uno) Cliente
+    @JoinColumn(name = "id_cliente",referencedColumnName = "id")//Referencio a la columna id en Cliente
+    private Cliente cliente;*/
+    @ManyToOne//Muchos(N) Incidentes se asocian con un(1) Cliente
     @JoinColumn(name = "id_cliente",referencedColumnName = "id")//Referencio a la columna id en Cliente
     private Cliente cliente;
+
 
     /*private Servicio servicio;*/
     @Column(name = "estado")

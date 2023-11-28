@@ -16,7 +16,7 @@ public class Especialidad {
     private String nombre;
     @Column(name = "descripcion",length = 150)
     private String descripcion;
-    //Una Espcialidad puede tener 1 o mas Tecnicos, @ManyToOne
+    //Una Especialidad puede tener 1 o mas Tecnicos, @ManyToOne
     @ManyToOne
     @JoinColumn(name="id_tecnico", referencedColumnName="id")
     private Tecnico tecnico;

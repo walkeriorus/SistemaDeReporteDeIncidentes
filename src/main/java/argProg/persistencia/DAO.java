@@ -9,8 +9,8 @@ import java.util.List;
 
 public class DAO<T> {
     private Class<T> claseEntidad;
+    private final EntityManager em = EntityManagerUtil.getEntityManager();
     public void guardar(T entidad) {
-        EntityManager em = EntityManagerUtil.getEntityManager();
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
         em.persist(entidad);
@@ -18,7 +18,6 @@ public class DAO<T> {
     }
     public
     void actualizar(T entidad){
-        EntityManager em = EntityManagerUtil.getEntityManager();
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
         T entidadActualizada = em.merge(entidad);
@@ -27,7 +26,6 @@ public class DAO<T> {
 
     public
     void eliminar(T entidad){
-        EntityManager em = EntityManagerUtil.getEntityManager();
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
         em.remove(entidad);
@@ -36,14 +34,12 @@ public class DAO<T> {
 
     public
     T buscar(int id){
-        EntityManager em = EntityManagerUtil.getEntityManager();
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
         return em.find(this.claseEntidad,id);
     };
 
     public List<T> buscarTodos(){
-        EntityManager em = EntityManagerUtil.getEntityManager();
         String sql = String.format("SELECT c FROM %s c", this.claseEntidad.getSimpleName() );
         System.out.println(sql);
         Query buscarTodos = em.createQuery(sql);
