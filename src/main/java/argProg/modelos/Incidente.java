@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
 
@@ -12,6 +13,9 @@ import java.util.Date;
 @Getter @Setter
 @Entity
 @Table(name = "incidentes")
+@NamedQueries({
+        @NamedQuery(name = "Incidente_buscarResueltos",query="SELECT inci FROM Incidente inci WHERE = inci.getEstado=\"resuelto\"")
+})
 public class Incidente {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -47,4 +51,13 @@ public class Incidente {
     @JoinColumn(name = "id_incidente",referencedColumnName = "id")
     private List<TipoProblema> tiposdeproblema;
 
+    public Incidente(String descripcionIncidente, Tecnico tecnico, Cliente cliente, String estado, Date fechaPosibleResolucion, boolean complejo) {
+        DescripcionIncidente = descripcionIncidente;
+        this.tecnico = tecnico;
+        this.cliente = cliente;
+        this.estado = estado;
+        this.fechaPosibleResolucion = fechaPosibleResolucion;
+        this.complejo = complejo;
+        this.tiposdeproblema = new ArrayList<>();
+    }
 }

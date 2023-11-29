@@ -49,4 +49,8 @@ public class DAO<T> {
     public void setClaseEntidad(Class<T> clase ){
         this.claseEntidad = clase;
     };
+
+    public EntityManager getEm(){
+        return this.em;
+    }
 }
