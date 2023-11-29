@@ -8,6 +8,7 @@ import jakarta.persistence.EntityManager;
 public class Main {
     public static void main(String[] args) {
         SistemaReportes sistemaReportes = new SistemaReportes();
-        sistemaReportes.rrhh.buscarTecnicoConMayorCantidadDeResueltos();
+        /*sistemaReportes.rrhh.buscarTecnicoConMayorCantidadDeResueltos();*/
+
     }
 }

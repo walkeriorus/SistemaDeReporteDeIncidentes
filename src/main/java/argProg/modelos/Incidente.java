@@ -14,7 +14,7 @@ import java.util.Date;
 @Entity
 @Table(name = "incidentes")
 @NamedQueries({
-        @NamedQuery(name = "Incidente_buscarResueltos",query="SELECT inci FROM Incidente inci WHERE = inci.getEstado=\"resuelto\"")
+        @NamedQuery(name = "Incidente_buscarResueltos",query="SELECT inci FROM Incidente inci WHERE = inci.getEstado()=\"resuelto\"")
 })
 public class Incidente {
     @Id
