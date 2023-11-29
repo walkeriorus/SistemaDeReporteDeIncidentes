@@ -1,17 +1,19 @@
 package argProg.utilidades;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 public class EntityManagerUtil {
     private static String PERSISTENCE_UNIT = "UP";
-    private static EntityManager em = null;
+    private static EntityManagerFactory emf = null;
+    
     public EntityManagerUtil(){}
     public static EntityManager getEntityManager(){
-        if(em == null){
-            em = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT).createEntityManager();
+        if(emf == null){
+            emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
         }
-        return em;
+        return emf.createEntityManager();
     }
 
 }

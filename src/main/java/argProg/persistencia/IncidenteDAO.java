@@ -14,7 +14,7 @@ public class IncidenteDAO extends DAO<Incidente>{
         TypedQuery<Incidente> buscarResueltos = getEm().createNamedQuery("Incidente_buscarResueltos",Incidente.class);
         return buscarResueltos.getResultList();
     }
-    public List<Incidente> getRecordsWithinDateRange(Date startDate, Date endDate) {
+    public List<Incidente> buscarIncidentesEntreFechas(Date startDate, Date endDate) {
         String jpql = "SELECT inci FROM Incidente inci WHERE inci.getFechaFinalizacion() BETWEEN :startDate AND :endDate";
 
         Query query = getEm().createQuery(jpql);
