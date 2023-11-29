@@ -23,4 +23,9 @@ public class Operador {
         }
         return horas;
     }
+
+    @Override
+    public String toString() {
+        return String.format("id: %s nombre: %s",getId(),getNombre());
+    }
 }

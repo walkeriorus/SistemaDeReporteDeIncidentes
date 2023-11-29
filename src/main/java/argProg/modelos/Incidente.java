@@ -8,13 +8,14 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
+import java.time.LocalDate;
 
 @NoArgsConstructor
 @Getter @Setter
 @Entity
 @Table(name = "incidentes")
 @NamedQueries({
-        @NamedQuery(name = "Incidente_buscarResueltos",query="SELECT inci FROM Incidente inci WHERE = inci.getEstado()=\"resuelto\"")
+        @NamedQuery(name = "Incidente_buscarResueltos",query="SELECT inci FROM Incidente inci WHERE inci.estado =\"resuelto\"")
 })
 public class Incidente {
     @Id
@@ -40,9 +41,9 @@ public class Incidente {
     @Column(name = "estado")
     private String estado;
     @Column(name = "fecha_posible_resolucion")
-    private Date fechaPosibleResolucion;
+    private LocalDate fechaPosibleResolucion;
     @Column(name = "fecha_finalizacion")
-    private Date fechaFinalizacion;
+    private LocalDate fechaFinalizacion;
     @Column(name="complejo")
     private boolean complejo;
 
@@ -51,7 +52,7 @@ public class Incidente {
     @JoinColumn(name = "id_incidente",referencedColumnName = "id")
     private List<TipoProblema> tiposdeproblema;
 
-    public Incidente(String descripcionIncidente, Tecnico tecnico, Cliente cliente, String estado, Date fechaPosibleResolucion, boolean complejo) {
+    public Incidente(String descripcionIncidente, Tecnico tecnico, Cliente cliente, String estado, LocalDate fechaPosibleResolucion, boolean complejo) {
         DescripcionIncidente = descripcionIncidente;
         this.tecnico = tecnico;
         this.cliente = cliente;
@@ -59,5 +60,12 @@ public class Incidente {
         this.fechaPosibleResolucion = fechaPosibleResolucion;
         this.complejo = complejo;
         this.tiposdeproblema = new ArrayList<>();
+    }
+    @Override
+    public String toString(){
+        String desc = String.format("id: %s, id_cliente: %s,id_tecnico:%s, \ndesc: %s, fechaFinalizacion:%s, estado: %s",
+                this.getId(),this.getCliente().getId(),this.getTecnico().getId(),this.getDescripcionIncidente(),
+                this.getFechaFinalizacion(),this.getEstado());
+        return desc;
     }
 }

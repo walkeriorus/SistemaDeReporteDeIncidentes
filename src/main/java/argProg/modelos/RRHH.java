@@ -22,8 +22,6 @@ public class RRHH {
         tecnicoDAO.guardar(tecnico);
     }
 
-    ;
-
     public void darDeBajaTecnico(Tecnico tecnico) {
         tecnicoDAO.eliminar(tecnico);
     }
@@ -36,12 +34,6 @@ public class RRHH {
         /*TODO Devolver el Tecnico que tenga mayor cantidad de Incidentes resueltos
          *  esto lo voy a buscar en la tabla de incidentes que contiene tanto el ID del Tecnico
          *  como el ESTADO del incidente( "resuelto","no resuelto")*/
-        /*
-        1)Conseguir los valores de los campos id_tecnico y estado de la tabla "incidentes".
-        2)Contar las apariciones de cada id_tecnico que tenga el valor "resuelto" en su campo estado.
-        3)Devolver el Tecnico consultando la tabla tecnico usando el valor del campo id_tecnico.
-        */
-        //1)
         EntityManager em = EntityManagerUtil.getEntityManager();
         TypedQuery<Incidente> query = em.createQuery("SELECT i FROM Incidente i",Incidente.class);
         List<Incidente> incidentes = new ArrayList<>();
@@ -51,9 +43,10 @@ public class RRHH {
             }
         }
         System.out.println(incidentes);
-        //2)
-
         return null;
+    }
+    public List<Tecnico> buscarTodosLosTecnicos(){
+        return tecnicoDAO.buscarTodos();
     }
 
 }

@@ -3,9 +3,8 @@ package argProg.modelos;
 import argProg.persistencia.ClienteDAO;
 import argProg.persistencia.IncidenteDAO;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class MesaDeAyuda {
     /*
@@ -26,7 +25,7 @@ public class MesaDeAyuda {
     }
 
 
-    public void ingresarIncidente(Incidente incidente){
+    public void crearIncidente(Incidente incidente){
         List<Tecnico> tecnicos_disponibles = this.consultarTecnicosDisponibles();
         incidenteDAO.guardar(incidente);
     }
@@ -41,8 +40,10 @@ public class MesaDeAyuda {
     public void informarCliente(){
     }
 
-
-    public List<Incidente> buscarIncidentePorFechas(Date fechaInic,Date fechaFin){
+    public List<Incidente> buscarTodosLosIncidentesResueltos(){
+        return incidenteDAO.buscarResueltos();
+    }
+    public List<Incidente> buscarIncidentesPorFechas(LocalDate fechaInic,LocalDate fechaFin){
         return incidenteDAO.buscarIncidentesEntreFechas(fechaInic,fechaFin);
     }
 }

@@ -19,4 +19,13 @@ public class Servicio {
     private String descripcion;
     @ManyToMany(mappedBy = "serviciosContratados")//Con esto tendriamos que un Servicio puede tener muchos Clientes
     private List<Cliente> cliente;
+
+    public Servicio(String nombre,String descripcion){
+        this.setNombre(nombre);
+        this.setDescripcion(descripcion);
+    }
+    @Override
+    public String toString(){
+        return String.format("id: %s, nombre:%s",this.getId(),this.getNombre());
+    }
 }

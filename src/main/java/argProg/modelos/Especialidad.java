@@ -20,4 +20,14 @@ public class Especialidad {
     @ManyToOne
     @JoinColumn(name="id_tecnico", referencedColumnName="id")
     private Tecnico tecnico;
+
+    public Especialidad(String nombre, String descripcion) {
+        this.setNombre(nombre);
+        this.setDescripcion(descripcion);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("id: %s, nombre: %s, desc: %s",this.getId(),this.getNombre(),this.getDescripcion());
+    }
 }
