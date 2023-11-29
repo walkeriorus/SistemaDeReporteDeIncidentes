@@ -4,7 +4,7 @@ import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 
 import java.util.List;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class IncidenteDAO extends DAO<Incidente>{
     public IncidenteDAO(){
@@ -14,8 +14,8 @@ public class IncidenteDAO extends DAO<Incidente>{
         TypedQuery<Incidente> buscarResueltos = getEm().createNamedQuery("Incidente_buscarResueltos",Incidente.class);
         return buscarResueltos.getResultList();
     }
-    public List<Incidente> buscarIncidentesEntreFechas(Date startDate, Date endDate) {
-        String jpql = "SELECT inci FROM Incidente inci WHERE inci.getFechaFinalizacion() BETWEEN :startDate AND :endDate";
+    public List<Incidente> buscarIncidentesEntreFechas(LocalDate startDate, LocalDate endDate) {
+        String jpql = "SELECT inci FROM Incidente inci WHERE inci.fechaFinalizacion BETWEEN :startDate AND :endDate";
 
         Query query = getEm().createQuery(jpql);
         query.setParameter("startDate", startDate);
