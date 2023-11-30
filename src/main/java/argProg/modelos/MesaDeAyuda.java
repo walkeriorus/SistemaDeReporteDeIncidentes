@@ -43,7 +43,7 @@ public class MesaDeAyuda {
     public List<Incidente> buscarTodosLosIncidentesResueltos(){
         return incidenteDAO.buscarResueltos();
     }
-    public List<Incidente> buscarIncidentesPorFechas(LocalDate fechaInic,LocalDate fechaFin){
+    public List<Incidente> buscarIncidentesResueltosEntreFechas(LocalDate fechaInic, LocalDate fechaFin){
         return incidenteDAO.buscarIncidentesResueltosEntreFechas(fechaInic,fechaFin);
     }
 }

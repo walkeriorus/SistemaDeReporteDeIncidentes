@@ -5,19 +5,18 @@ import argProg.persistencia.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Date;
-import java.time.*;
+import java.time.LocalDate;
 
 
 public class Main {
     public static void main(String[] args) {
         SistemaReportes sistemaReportes = new SistemaReportes();
-        /*sistemaReportes.rrhh.buscarTecnicoConMayorCantidadDeResueltos();*/
 
         //CREO ALGUNAS FECHAS PARA LOS INCIDENTES
         LocalDate fecha_ini = LocalDate.of(2023,11,29);
         LocalDate fecha_fin = LocalDate.of(2023,12,4);
 
+/*
 
         //CREO ALGUNOS SERVICIOS
         List<Servicio> servicios_1 = new ArrayList<>();
@@ -58,10 +57,11 @@ public class Main {
         tiposDeProblemas.add(problema_2);
 
         //Guardar primero
-        //CREO UN TECNICO
+        //CREO ALGUNOS TECNICOS
         Tecnico tecnico_1 = new Tecnico("Juan Tecnico",especialidadesList,8);
+        Tecnico tecnico_2 = new Tecnico("Alberto Arreglin",especialidadesList,12);
 
-        //CREO UN INCIDENTE
+        //CREO ALGUNOS INCIDENTES
         Incidente incidente_1 = new Incidente();
         incidente_1.setDescripcionIncidente("Problemas de red en Windows 10");
         incidente_1.setCliente(cliente_1);
@@ -69,6 +69,30 @@ public class Main {
         incidente_1.setTecnico(tecnico_1);
         incidente_1.setComplejo(false);
         incidente_1.setTiposdeproblema(tiposDeProblemas);
+
+        Incidente incidente_2 = new Incidente();
+        incidente_2.setDescripcionIncidente("Problemas en Linux Mint");
+        incidente_2.setCliente(cliente_2);
+        incidente_2.setEstado("no resuelto");
+        incidente_2.setTecnico(tecnico_1);
+        incidente_2.setComplejo(false);
+        incidente_2.setTiposdeproblema(tiposDeProblemas);
+
+        Incidente incidente_3 = new Incidente();
+        incidente_3.setDescripcionIncidente("Problemas en Linux Mint");
+        incidente_3.setCliente(cliente_2);
+        incidente_3.setEstado("resuelto");
+        incidente_3.setTecnico(tecnico_2);
+        incidente_3.setComplejo(false);
+        incidente_3.setTiposdeproblema(tiposDeProblemas);
+
+        Incidente incidente_4 = new Incidente();
+        incidente_4.setDescripcionIncidente("Problemas en Windows 7");
+        incidente_4.setCliente(cliente_1);
+        incidente_4.setEstado("resuelto");
+        incidente_4.setTecnico(tecnico_1);
+        incidente_4.setComplejo(false);
+        incidente_4.setTiposdeproblema(tiposDeProblemas);
 
         //PERSISTO LOS DATOS
         //PERSISTO LOS SERVICIOS
@@ -103,23 +127,36 @@ public class Main {
         especialidad_1.setId(1);
         especialidad_2.setId(2);
         sistemaReportes.rrhh.darDeAltaTecnico(tecnico_1);
+        sistemaReportes.rrhh.darDeAltaTecnico(tecnico_2);
 
 
-        //4)PERSISTO EL INCIDENTE
+        //4)PERSISTO EL/LOS INCIDENTE/S
         cliente_1.setId(1);
         tecnico_1.setId(1);
         problema_1.setId(1);
         problema_2.setId(2);
-        incidente_1.setFechaFinalizacion(fecha_fin);
-        sistemaReportes.mesaDeAyuda.crearIncidente(incidente_1);
 
+
+        incidente_1.setFechaFinalizacion(fecha_fin);
+        incidente_2.setFechaFinalizacion(fecha_fin);
+        incidente_3.setFechaFinalizacion(fecha_fin);
+        incidente_4.setFechaFinalizacion(fecha_fin);
+
+        sistemaReportes.mesaDeAyuda.crearIncidente(incidente_1);
+        sistemaReportes.mesaDeAyuda.crearIncidente(incidente_2);
+        sistemaReportes.mesaDeAyuda.crearIncidente(incidente_3);
+        sistemaReportes.mesaDeAyuda.crearIncidente(incidente_4);
+
+*/
 
         //BUSCO LOS CLIENTES,INCIDENTES,TECNICOS EN LA BASE DE DATOS
-        System.out.println(sistemaReportes.rrhh.buscarTodosLosTecnicos());
-        System.out.println(sistemaReportes.areaComercial.buscarTodosLosClientes());
+        /*System.out.println(sistemaReportes.rrhh.buscarTodosLosTecnicos());
+        System.out.println(sistemaReportes.areaComercial.buscarTodosLosClientes());*/
         //SOLO INCIDENTES RESUELTOS-ACTUALMENTE SOLO HAY UN INCIDENTE Y SU ESTADO ES "resuelto" PERO ES PARA PROBAR
         /*System.out.println(sistemaReportes.mesaDeAyuda.buscarTodosLosIncidentesResueltos());*/
-        System.out.println(sistemaReportes.mesaDeAyuda.buscarIncidentesPorFechas(fecha_ini,fecha_fin));
+        /*System.out.println(sistemaReportes.mesaDeAyuda.buscarIncidentesPorFechas(fecha_ini,fecha_fin));*/
+        System.out.println(sistemaReportes.buscarTecnicoConMasResueltosEntreFechas(fecha_ini,fecha_fin));
+        System.out.println(sistemaReportes.buscarTecnicoConMasResueltosPorEspecialidad(fecha_ini,fecha_fin,1));
 
     }
 }

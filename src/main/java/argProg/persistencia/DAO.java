@@ -4,6 +4,7 @@ import argProg.utilidades.EntityManagerUtil;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Query;
+import jakarta.transaction.Transactional;
 
 import java.util.List;
 
@@ -15,6 +16,7 @@ public class DAO<T> {
         transaction.begin();
         em.persist(entidad);
         transaction.commit();
+        em.close();
     }
     public
     void actualizar(T entidad){
@@ -22,7 +24,8 @@ public class DAO<T> {
         transaction.begin();
         T entidadActualizada = em.merge(entidad);
         transaction.commit();
-    };
+        em.close();
+    }
 
     public
     void eliminar(T entidad){
@@ -30,21 +33,19 @@ public class DAO<T> {
         transaction.begin();
         em.remove(entidad);
         transaction.commit();
-    };
-
-    public
-    T buscar(int id){
-        EntityTransaction transaction = em.getTransaction();
-        transaction.begin();
+        em.close();
+    }
+    @Transactional
+    public T buscar(int id){
         return em.find(this.claseEntidad,id);
-    };
+    }
 
     public List<T> buscarTodos(){
         String sql = String.format("SELECT c FROM %s c", this.claseEntidad.getSimpleName() );
         System.out.println(sql);
         Query buscarTodos = em.createQuery(sql);
         return buscarTodos.getResultList();
-    };
+    }
 
     public void setClaseEntidad(Class<T> clase ){
         this.claseEntidad = clase;

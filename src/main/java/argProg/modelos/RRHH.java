@@ -30,6 +30,9 @@ public class RRHH {
         tecnicoDAO.actualizar(tecnico);
     }
 
+    public Tecnico buscarTecnicoPorId(Integer id){
+        return tecnicoDAO.buscar(id);
+    }
     public Tecnico buscarTecnicoConMayorCantidadDeResueltos() {
         /*TODO Devolver el Tecnico que tenga mayor cantidad de Incidentes resueltos
          *  esto lo voy a buscar en la tabla de incidentes que contiene tanto el ID del Tecnico
