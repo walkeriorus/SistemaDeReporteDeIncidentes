@@ -16,7 +16,6 @@ public class Main {
         LocalDate fecha_ini = LocalDate.of(2023,11,29);
         LocalDate fecha_fin = LocalDate.of(2023,12,4);
 
-/*
 
         //CREO ALGUNOS SERVICIOS
         List<Servicio> servicios_1 = new ArrayList<>();
@@ -41,7 +40,7 @@ public class Main {
         especialidadesList.add(especialidad_1);
         especialidadesList.add(especialidad_2);
 
-        //CREO ALGUNO USUARIOS/CLIENTES
+        //CREO ALGUNOS USUARIOS/CLIENTES
         Cliente cliente_1 = new Cliente("Juan Gomez","202020202020","PlayTech.");
         cliente_1.setServiciosContratados(servicios_1);
 
@@ -96,45 +95,49 @@ public class Main {
 
         //PERSISTO LOS DATOS
         //PERSISTO LOS SERVICIOS
-        ServicioDAO servicioDAO = new ServicioDAO();
+        /*ServicioDAO servicioDAO = new ServicioDAO();
         servicioDAO.guardar(windows_7);
         servicioDAO.guardar(windows_10);
         servicioDAO.guardar(linuxMint);
-        servicioDAO.guardar(microsoftWord);
+        servicioDAO.guardar(microsoftWord);*/
 
-        windows_7.setId(1);
+        /*windows_7.setId(1);
         windows_10.setId(2);
         linuxMint.setId(3);
-        microsoftWord.setId(4);
+        microsoftWord.setId(4);*/
 
         //1)PERSISTO EL/LOS CLIENTE/S
-        sistemaReportes.areaComercial.crear(cliente_1);
-        sistemaReportes.areaComercial.crear(cliente_2);
+        /*sistemaReportes.areaComercial.crear(cliente_1);
+        sistemaReportes.areaComercial.crear(cliente_2);*/
 
         //PERSISTO LAS ESPECIALIDADES
         //Aca no hay quien se encargue todavia asi que llamo directamente a los metodos del dao EspecialidadDAO
         EspecialidadDAO especialidadDAO = new EspecialidadDAO();
-        especialidadDAO.guardar(especialidad_1);
-        especialidadDAO.guardar(especialidad_2);
+
+        especialidad_1.setTecnico(tecnico_1);
+        especialidad_2.setTecnico(tecnico_2);
+
+        /*especialidadDAO.guardar(especialidad_1);
+        especialidadDAO.guardar(especialidad_2);*/
 
         //2) PERSISTO LOS TIPOS DE PROBLEMAS
         TipoProblemaDAO tipoProblemaDAO = new TipoProblemaDAO();//Todavia no hay quien maneje esta parte asi que uso el DAO directamente
-        tipoProblemaDAO.guardar(problema_1);
-        tipoProblemaDAO.guardar(problema_2);
+        /*tipoProblemaDAO.guardar(problema_1);
+        tipoProblemaDAO.guardar(problema_2);*/
 
 
         //3)PERSISTO EL/LOS TECNICO/S
-        especialidad_1.setId(1);
-        especialidad_2.setId(2);
-        sistemaReportes.rrhh.darDeAltaTecnico(tecnico_1);
-        sistemaReportes.rrhh.darDeAltaTecnico(tecnico_2);
+        /*especialidad_1.setId(1);
+        especialidad_2.setId(2);*/
+        /*sistemaReportes.rrhh.darDeAltaTecnico(tecnico_1);
+        sistemaReportes.rrhh.darDeAltaTecnico(tecnico_2);*/
 
 
         //4)PERSISTO EL/LOS INCIDENTE/S
-        cliente_1.setId(1);
+        /*cliente_1.setId(1);
         tecnico_1.setId(1);
         problema_1.setId(1);
-        problema_2.setId(2);
+        problema_2.setId(2);*/
 
 
         incidente_1.setFechaFinalizacion(fecha_fin);
@@ -147,7 +150,6 @@ public class Main {
         sistemaReportes.mesaDeAyuda.crearIncidente(incidente_3);
         sistemaReportes.mesaDeAyuda.crearIncidente(incidente_4);
 
-*/
 
         //BUSCO LOS CLIENTES,INCIDENTES,TECNICOS EN LA BASE DE DATOS
         /*System.out.println(sistemaReportes.rrhh.buscarTodosLosTecnicos());
@@ -155,8 +157,8 @@ public class Main {
         //SOLO INCIDENTES RESUELTOS-ACTUALMENTE SOLO HAY UN INCIDENTE Y SU ESTADO ES "resuelto" PERO ES PARA PROBAR
         /*System.out.println(sistemaReportes.mesaDeAyuda.buscarTodosLosIncidentesResueltos());*/
         /*System.out.println(sistemaReportes.mesaDeAyuda.buscarIncidentesPorFechas(fecha_ini,fecha_fin));*/
-        System.out.println(sistemaReportes.buscarTecnicoConMasResueltosEntreFechas(fecha_ini,fecha_fin));
-        System.out.println(sistemaReportes.buscarTecnicoConMasResueltosPorEspecialidad(fecha_ini,fecha_fin,1));
+        /*System.out.println(sistemaReportes.buscarTecnicoConMasResueltosEntreFechas(fecha_ini,fecha_fin));
+        System.out.println(sistemaReportes.buscarTecnicoConMasResueltosPorEspecialidad(fecha_ini,fecha_fin,1));*/
 
     }
 }

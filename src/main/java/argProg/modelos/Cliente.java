@@ -25,7 +25,7 @@ public class Cliente {
     private String cuit;
     @Column(name = "razon_social", length = 50)
     private String razonSocial;
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST})
     @JoinTable(name = "cliente_servicio", joinColumns = @JoinColumn(name = "id_cliente"), inverseJoinColumns = @JoinColumn(name = "id_servicio"))
 //Con esto tendriamos que un Cliente puede tener muchos Servicios
     private List<Servicio> serviciosContratados;

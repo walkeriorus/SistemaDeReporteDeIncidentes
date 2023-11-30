@@ -19,15 +19,13 @@ public class Tecnico {
     private String nombre;
 
 
-    //Un(1) Tecnico puede tener muchas Especialidades, @OneToMany
-    @OneToMany(mappedBy = "tecnico")//mapeado por el atributo tecnico en Especialidad
+    @OneToMany(mappedBy = "tecnico",cascade = {CascadeType.PERSIST})//mapeado por el atributo tecnico en Especialidad
     private List<Especialidad> especialidades;
-    //Un(uno) Tecnico puede tener muchos(many) Incidentes asociados
 
 
     @OneToMany
-    /*@JoinColumn(name = "id_tecnico",referencedColumnName = "id")//Coloca en la tabla "incidentes" la fk id_tecnico que hace referencia a la columna id de esta tabla(Tecnico)*/
     private List<Incidente> incidentes;
+    @Column(name = "tiempo_por_defecto")
     private Integer tiempopordefecto;
 
 

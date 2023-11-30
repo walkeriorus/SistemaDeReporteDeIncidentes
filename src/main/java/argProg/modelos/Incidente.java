@@ -25,15 +25,12 @@ public class Incidente {
     @Column(name = "descripcion",length = 150)
     private String DescripcionIncidente;
 
-    @ManyToOne//Muchos Incidentes se asocian a un(1) Tecnico
+    @ManyToOne(cascade = {CascadeType.PERSIST})//Muchos Incidentes se asocian a un(1) Tecnico
     @JoinColumn(name = "id_tecnico",referencedColumnName = "id")
     public Tecnico tecnico;
 
-    /*@OneToOne//Un(uno) Incidente se asocia con un(uno) Cliente
-    @JoinColumn(name = "id_cliente",referencedColumnName = "id")//Referencio a la columna id en Cliente
-    private Cliente cliente;*/
-    @ManyToOne//Muchos(N) Incidentes se asocian con un(1) Cliente
-    @JoinColumn(name = "id_cliente",referencedColumnName = "id")//Referencio a la columna id en Cliente
+    @ManyToOne(cascade = {CascadeType.PERSIST})
+    @JoinColumn(name = "id_cliente",referencedColumnName = "id")
     private Cliente cliente;
 
 
@@ -48,7 +45,7 @@ public class Incidente {
     private boolean complejo;
 
     //Un(uno) Incidente puede tener muchos TiposProblema --> @OneToMany
-    @OneToMany
+    @OneToMany(cascade ={CascadeType.PERSIST} )
     @JoinColumn(name = "id_incidente",referencedColumnName = "id")
     private List<TipoProblema> tiposdeproblema;
 

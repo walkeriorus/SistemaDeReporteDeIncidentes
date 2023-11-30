@@ -17,7 +17,7 @@ public class Especialidad {
     @Column(name = "descripcion",length = 150)
     private String descripcion;
     //Una Especialidad puede tener 1 o mas Tecnicos, @ManyToOne
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST})
     @JoinColumn(name="id_tecnico", referencedColumnName="id")
     private Tecnico tecnico;
 

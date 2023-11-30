@@ -17,7 +17,7 @@ public class Servicio {
     private String nombre;
     @Column(name = "descripcion",length=150)
     private String descripcion;
-    @ManyToMany(mappedBy = "serviciosContratados")//Con esto tendriamos que un Servicio puede tener muchos Clientes
+    @ManyToMany(mappedBy = "serviciosContratados",cascade = {CascadeType.PERSIST})//Con esto tendriamos que un Servicio puede tener muchos Clientes
     private List<Cliente> cliente;
 
     public Servicio(String nombre,String descripcion){

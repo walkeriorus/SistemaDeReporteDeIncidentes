@@ -16,7 +16,7 @@ public class DAO<T> {
         transaction.begin();
         em.persist(entidad);
         transaction.commit();
-        em.close();
+
     }
     public
     void actualizar(T entidad){
@@ -24,7 +24,7 @@ public class DAO<T> {
         transaction.begin();
         T entidadActualizada = em.merge(entidad);
         transaction.commit();
-        em.close();
+
     }
 
     public
@@ -33,7 +33,7 @@ public class DAO<T> {
         transaction.begin();
         em.remove(entidad);
         transaction.commit();
-        em.close();
+
     }
     @Transactional
     public T buscar(int id){
