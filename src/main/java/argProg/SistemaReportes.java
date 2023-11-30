@@ -20,7 +20,7 @@ public class SistemaReportes {
             int objectId = incidente.getTecnico().getId();
             idCountMap.put(objectId, idCountMap.getOrDefault(objectId, 0) + 1);
         }
-        System.out.println("idCountMap: "+idCountMap);
+
 
         // Find the ID with the maximum occurrences
         int mostFrequentId = -1;
@@ -38,7 +38,7 @@ public class SistemaReportes {
         return rrhh.buscarTecnicoPorId(mostFrequentId);
     }
     public Tecnico buscarTecnicoConMasResueltosPorEspecialidad(LocalDate fechIni,LocalDate fechaFin,Integer idEspecialidad){
-        System.out.println("EJECUTANDO buscarTecnicoConMasResueltosPorEspecialidad...");
+
         List<Incidente> incidentesResueltos = mesaDeAyuda.buscarIncidentesResueltosEntreFechas(fechIni,fechaFin);
 
         Map<Integer, Integer> idCountMap = new HashMap<>();
@@ -52,7 +52,6 @@ public class SistemaReportes {
                 }
             }
         }
-        System.out.println("idCountMap: " + idCountMap );
         int mostFrequentId = -1;
         int maxCount = 0;
 
@@ -81,21 +80,20 @@ public class SistemaReportes {
             int objectId = incidente.getTecnico().getId();
             idCountMap.put(objectId, idCountMap.getOrDefault(objectId, 0) + sum);
         }
+      
         int mostFrequentId = -1;
-        int maxCount = 0;
+        //Arbitrariamente digo que el tecnico de id = 1 tiene menos cantidad de horas contadas
+        int minimoHoras = idCountMap.get(1);
 
         for (Map.Entry<Integer, Integer> entry : idCountMap.entrySet()) {
             int idTecnicoActual = entry.getKey();
-            int totalDeHorasDeTecnicoActual = entry.getValue();
+            int horasTecnicoActual = entry.getValue();
 
-            if (totalDeHorasDeTecnicoActual < maxCount) {
+            if (horasTecnicoActual < minimoHoras) {
                 mostFrequentId = idTecnicoActual;
-                maxCount = totalDeHorasDeTecnicoActual;
+                minimoHoras = horasTecnicoActual;
             }
         }
-        Collection<Integer> horasDeTecnicos = idCountMap.values();
-        Integer minimoHoras = Collections.min(horasDeTecnicos);
-
 
         return rrhh.buscarTecnicoPorId(mostFrequentId);
     }

@@ -157,8 +157,9 @@ public class Main {
         //SOLO INCIDENTES RESUELTOS-ACTUALMENTE SOLO HAY UN INCIDENTE Y SU ESTADO ES "resuelto" PERO ES PARA PROBAR
         /*System.out.println(sistemaReportes.mesaDeAyuda.buscarTodosLosIncidentesResueltos());*/
         /*System.out.println(sistemaReportes.mesaDeAyuda.buscarIncidentesPorFechas(fecha_ini,fecha_fin));*/
-        /*System.out.println(sistemaReportes.buscarTecnicoConMasResueltosEntreFechas(fecha_ini,fecha_fin));
-        System.out.println(sistemaReportes.buscarTecnicoConMasResueltosPorEspecialidad(fecha_ini,fecha_fin,1));*/
+        /*System.out.println(sistemaReportes.buscarTecnicoConMasResueltosEntreFechas(fecha_ini,fecha_fin));*/
+        //System.out.println(sistemaReportes.buscarTecnicoConMasResueltosPorEspecialidad(fecha_ini,fecha_fin,1));
+        System.out.println(sistemaReportes.buscarTecnicoQueResolvioMasRapidoSusIncidentes(fecha_ini,fecha_fin));
 
     }
 }
