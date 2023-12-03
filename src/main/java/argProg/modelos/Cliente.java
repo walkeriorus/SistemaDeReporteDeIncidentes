@@ -38,6 +38,9 @@ public class Cliente {
         this.nombre = nombre;
         this.razonSocial = razonSocial;
     }
+    public void agregarServicio(Servicio nuevoServicio){
+        this.serviciosContratados.add(nuevoServicio);
+    }
 
     @Override
     public String toString() {
