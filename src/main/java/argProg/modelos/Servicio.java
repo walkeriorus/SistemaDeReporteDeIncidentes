@@ -10,15 +10,21 @@ import java.util.List;
 @Entity
 @Table(name = "servicio")
 public class Servicio {
+
+
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE )
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY )
+    @Column(name = "idServicio")
+    private int idServicio;
+
+
     @Column(name = "nombre",length = 50)
     private String nombre;
+
+
     @Column(name = "descripcion",length=150)
     private String descripcion;
-    @ManyToMany(mappedBy = "serviciosContratados",cascade = {CascadeType.PERSIST})//Con esto tendriamos que un Servicio puede tener muchos Clientes
-    private List<Cliente> cliente;
+
 
     public Servicio(String nombre,String descripcion){
         this.setNombre(nombre);
@@ -26,6 +32,6 @@ public class Servicio {
     }
     @Override
     public String toString(){
-        return String.format("id: %s, nombre:%s",this.getId(),this.getNombre());
+        return String.format("id: %s, nombre:%s",this.getIdServicio(),this.getNombre());
     }
 }

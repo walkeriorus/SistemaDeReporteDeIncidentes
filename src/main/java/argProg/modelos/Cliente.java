@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Setter @Getter
@@ -16,19 +17,29 @@ import java.util.List;
         }
 )
 public class Cliente {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idCliente")
+    private int idCliente;
+
+
     @Column(name = "nombre", length = 50)
     private String nombre;
+
+
     @Column(name = "cuit", length = 12)
     private String cuit;
+
+
     @Column(name = "razon_social", length = 50)
     private String razonSocial;
-    @ManyToMany(cascade = {CascadeType.PERSIST})
-    @JoinTable(name = "cliente_servicio", joinColumns = @JoinColumn(name = "id_cliente"), inverseJoinColumns = @JoinColumn(name = "id_servicio"))
-//Con esto tendriamos que un Cliente puede tener muchos Servicios
+
+
+    @OneToMany(cascade = CascadeType.PERSIST )
+    @JoinColumn(name = "id_cliente", referencedColumnName = "idCliente",foreignKey = @ForeignKey(name = "ClienteServicioPorId"))
     private List<Servicio> serviciosContratados;
+
 
     public Cliente() {
     }
@@ -37,6 +48,7 @@ public class Cliente {
         this.cuit = cuit;
         this.nombre = nombre;
         this.razonSocial = razonSocial;
+        this.serviciosContratados = new ArrayList<>();
     }
     public void agregarServicio(Servicio nuevoServicio){
         this.serviciosContratados.add(nuevoServicio);
@@ -44,6 +56,6 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "id: " + this.id + " nombre: " + this.nombre + " cuit: " + this.cuit + " razon_social: " + this.razonSocial;
+        return "id: " + this.idCliente + " nombre: " + this.nombre + " cuit: " + this.cuit + " razon_social: " + this.razonSocial;
     }
 }

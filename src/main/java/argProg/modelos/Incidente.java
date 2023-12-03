@@ -7,7 +7,6 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Date;
 import java.time.LocalDate;
 
 @NoArgsConstructor
@@ -19,49 +18,55 @@ import java.time.LocalDate;
 })
 public class Incidente {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY )
+    @Column(name = "id")
     private int id;
 
     @Column(name = "descripcion",length = 150)
-    private String DescripcionIncidente;
-
-    @ManyToOne(cascade = {CascadeType.PERSIST})//Muchos Incidentes se asocian a un(1) Tecnico
-    @JoinColumn(name = "id_tecnico",referencedColumnName = "id")
-    public Tecnico tecnico;
+    private String descripcionIncidente;
 
     @ManyToOne(cascade = {CascadeType.PERSIST})
-    @JoinColumn(name = "id_cliente",referencedColumnName = "id")
+    @JoinColumn(name = "id_cliente",referencedColumnName = "idCliente",foreignKey = @ForeignKey(name = "IncidenteClientePorId"))
     private Cliente cliente;
 
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name="id_servicio",referencedColumnName = "idServicio",foreignKey = @ForeignKey(name = "IncidenteServicioPorId"))
+    private Servicio servicio;
 
-    /*private Servicio servicio;*/
-    @Column(name = "estado")
-    private String estado;
+    @ManyToOne(cascade = {CascadeType.PERSIST})
+    @JoinColumn(name = "id_tecnico",referencedColumnName = "idTecnico",foreignKey = @ForeignKey(name = "IncidenteTecnicoPorId"))
+    public Tecnico tecnico;
+
     @Column(name = "fecha_posible_resolucion")
     private LocalDate fechaPosibleResolucion;
+
     @Column(name = "fecha_finalizacion")
     private LocalDate fechaFinalizacion;
+
+    @Column(name = "estado")
+    private String estado;
+
     @Column(name="complejo")
     private boolean complejo;
 
-    //Un(uno) Incidente puede tener muchos TiposProblema --> @OneToMany
     @OneToMany(cascade ={CascadeType.PERSIST} )
     @JoinColumn(name = "id_incidente",referencedColumnName = "id")
-    private List<TipoProblema> tiposdeproblema;
+    private List<TipoProblema> tiposDeProblema;
+
 
     public Incidente(String descripcionIncidente, Tecnico tecnico, Cliente cliente, String estado, LocalDate fechaPosibleResolucion, boolean complejo) {
-        DescripcionIncidente = descripcionIncidente;
+        this.descripcionIncidente = descripcionIncidente;
         this.tecnico = tecnico;
         this.cliente = cliente;
         this.estado = estado;
         this.fechaPosibleResolucion = fechaPosibleResolucion;
         this.complejo = complejo;
-        this.tiposdeproblema = new ArrayList<>();
+        this.tiposDeProblema = new ArrayList<>();
     }
     @Override
     public String toString(){
         String desc = String.format("id: %s, id_cliente: %s,id_tecnico:%s, \ndesc: %s, fechaFinalizacion:%s, estado: %s",
-                this.getId(),this.getCliente().getId(),this.getTecnico().getId(),this.getDescripcionIncidente(),
+                this.getId(),this.getCliente().getIdCliente(),this.getTecnico().getIdTecnico(),this.getDescripcionIncidente(),
                 this.getFechaFinalizacion(),this.getEstado());
         return desc;
     }

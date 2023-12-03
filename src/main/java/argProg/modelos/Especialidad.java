@@ -9,17 +9,20 @@ import lombok.Setter;
 @Entity
 @Table(name = "especialidad")
 public class Especialidad {
+
+
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE )
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY )
+    private int idEspecialidad;
+
+
     @Column(name = "nombre",length = 80)
     private String nombre;
+
+
     @Column(name = "descripcion",length = 150)
     private String descripcion;
-    //Una Especialidad puede tener 1 o mas Tecnicos, @ManyToOne
-    @ManyToOne(cascade = {CascadeType.PERSIST})
-    @JoinColumn(name="id_tecnico", referencedColumnName="id")
-    private Tecnico tecnico;
+
 
     public Especialidad(String nombre, String descripcion) {
         this.setNombre(nombre);
@@ -28,6 +31,6 @@ public class Especialidad {
 
     @Override
     public String toString() {
-        return String.format("id: %s, nombre: %s, desc: %s",this.getId(),this.getNombre(),this.getDescripcion());
+        return String.format("id: %s, nombre: %s, desc: %s",this.getIdEspecialidad(),this.getNombre(),this.getDescripcion());
     }
 }

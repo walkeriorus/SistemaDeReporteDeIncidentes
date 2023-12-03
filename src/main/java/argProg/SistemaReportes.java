@@ -17,7 +17,7 @@ public class SistemaReportes {
         // donde los pares clave-valor tienen : idTecnico(clave):ocurenciasIdTecnico(valor)
         Map<Integer, Integer> idCountMap = new HashMap<>();
         for (Incidente incidente : incidentesResueltos) {
-            int objectId = incidente.getTecnico().getId();
+            int objectId = incidente.getTecnico().getIdTecnico();
             idCountMap.put(objectId, idCountMap.getOrDefault(objectId, 0) + 1);
         }
 
@@ -46,8 +46,8 @@ public class SistemaReportes {
             Tecnico tecnicoActual = incidente.getTecnico();
 
             for( Especialidad especialidad : tecnicoActual.getEspecialidades() ){
-                if( especialidad.getId() == idEspecialidad ){
-                    int objectId = incidente.getTecnico().getId();
+                if( especialidad.getIdEspecialidad() == idEspecialidad ){
+                    int objectId = incidente.getTecnico().getIdTecnico();
                     idCountMap.put(objectId, idCountMap.getOrDefault(objectId, 0) + 1);
                 }
             }
@@ -74,10 +74,10 @@ public class SistemaReportes {
         Map<Integer, Integer> idCountMap = new HashMap<>();
         for (Incidente incidente : incidentesResueltos) {
             int sum = 0;
-            for(TipoProblema tipoProblema : incidente.getTiposdeproblema()){
+            for(TipoProblema tipoProblema : incidente.getTiposDeProblema()){
                 sum = sum + tipoProblema.getTiempoMaximoDeResolucion();
             }
-            int objectId = incidente.getTecnico().getId();
+            int objectId = incidente.getTecnico().getIdTecnico();
             idCountMap.put(objectId, idCountMap.getOrDefault(objectId, 0) + sum);
         }
       

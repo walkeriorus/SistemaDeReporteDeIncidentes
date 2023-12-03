@@ -11,9 +11,14 @@ import java.util.Random;
 public class Operador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY )
+    @Column(name = "id")
     private int id;
+
+
     @Column(name = "nombre",length = 50 )
     private String nombre;
+
+
     public int AgregarHoras(boolean complejo) {
         int horas=0;
         if (complejo) {

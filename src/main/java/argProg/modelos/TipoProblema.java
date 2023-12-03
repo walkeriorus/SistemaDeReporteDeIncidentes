@@ -10,7 +10,8 @@ import lombok.Setter;
 @Table(name = "tipo_problema")
 public class TipoProblema {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY )
+    @Column(name = "id")
     private int id;
     @Column(name = "nombre",length = 50)
     private String nombre;
